@@ -1,12 +1,15 @@
 package br.edu.ifpr.cars.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,13 +47,30 @@ public class DriverController {
 
     }
 
-    //uptade
-    @PutMapping("/drivers{id}")
+    //update 
+    @PutMapping("/drivers/{id}")
     public Driver fullUpdateDriver(@PathVariable("id") Long id, @RequestBody Driver driver){
-        Driver founDriver = findDriver(id);
+        Driver foundDriver = findDriver(id);
         foundDriver.setName(driver.getName());
         foundDriver.setBirthDate(driver.getBirthDate());
         return driverRepository.save(foundDriver);
     }
 
+    // update parcial
+    @PatchMapping("/drivers/{id}")
+    public Driver incrementalUpdateDriver(@PathVariable("id") Long id, @RequestBody Driver driver){
+        Driver founDriver = findDriver(id);
+        founDriver.setName(Optional.ofNullable(driver.getName()).orElse(founDriver.getName()) );
+        founDriver.setBirthDate(Optional.ofNullable( driver.getBirthDate()).orElse(founDriver.getBirthDate()));
+        return driverRepository.save(founDriver);
+    }
+                 
+    @DeleteMapping("/drivers/{id}")
+    public void deleteDriver(@PathVariable("id") Long id){
+        driverRepository.deleteById(id);
+    }
+
 }
+
+// implementar passageiro: id, name e email
+// implementar classe de manipulação de erro
