@@ -42,7 +42,7 @@ public class DriverController {
         );
 
     }
-    
+    //criar
     @PostMapping("/drivers")
     public Driver createDriver(@RequestBody @Valid Driver driver){
         return driverRepository.save(driver);
@@ -55,6 +55,8 @@ public class DriverController {
         Driver foundDriver = findDriver(id);
         foundDriver.setName(driver.getName());
         foundDriver.setBirthDate(driver.getBirthDate());
+        foundDriver.setCpf(driver.getCpf());
+        foundDriver.setEmail(driver.getEmail());
         return driverRepository.save(foundDriver);
     }
 
@@ -63,16 +65,17 @@ public class DriverController {
     public Driver incrementalUpdateDriver(@PathVariable("id") Long id, @RequestBody Driver driver){
         Driver founDriver = findDriver(id);
         founDriver.setName(Optional.ofNullable(driver.getName()).orElse(founDriver.getName()) );
+        founDriver.setEmail(Optional.ofNullable( driver.getEmail()).orElse(founDriver.getEmail()));
+        founDriver.setCpf(Optional.ofNullable( driver.getCpf()).orElse(founDriver.getCpf()));
         founDriver.setBirthDate(Optional.ofNullable( driver.getBirthDate()).orElse(founDriver.getBirthDate()));
         return driverRepository.save(founDriver);
     }
-                 
+    //deletar    
     @DeleteMapping("/drivers/{id}")
     public void deleteDriver(@PathVariable("id") Long id){
         driverRepository.deleteById(id);
     }
 
 }
-
 // implementar passageiro: id, name e email
 // implementar classe de manipulação de erro
