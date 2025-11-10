@@ -4,6 +4,11 @@ import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.edu.ifpr.cars.validate.AnoCarro;
+import br.edu.ifpr.cars.validate.Cnh;
+import br.edu.ifpr.cars.validate.Comentario;
+import br.edu.ifpr.cars.validate.Impar;
+import br.edu.ifpr.cars.validate.Placa;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +26,7 @@ public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @NotBlank(message = "é necessário digitar um nome" )
     @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres") 
     @Pattern(regexp = "^[\\S]+$", message = "O nome não pode conter espaços em branco")
@@ -37,5 +43,16 @@ public class Driver {
     String email;
     
     LocalDate birthDate;
+
+    @Placa
+    String placa;
+    @Cnh
+    String cnh;
+    @AnoCarro
+    int anoCarro;
+    @Comentario
+    String comentario;
+    @Impar
+    int num;
 
 }
