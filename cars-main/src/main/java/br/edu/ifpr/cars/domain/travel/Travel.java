@@ -1,7 +1,6 @@
 package br.edu.ifpr.cars.domain.travel;
 
 import jakarta.persistence.*;
-import br.edu.ifpr.cars.domain.travel.dto.TravelRequestStatus;
 
 @Entity
 public class Travel {
@@ -9,7 +8,6 @@ public class Travel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long passengerId;
     private String origin;
     private String destination;
@@ -17,7 +15,8 @@ public class Travel {
     @Enumerated(EnumType.STRING)
     private TravelRequestStatus status;
 
-    public Travel() {}
+    public Travel() {
+    }
 
     public Travel(Long passengerId, String origin, String destination) {
         this.passengerId = passengerId;
@@ -26,7 +25,7 @@ public class Travel {
         this.status = TravelRequestStatus.CREATED;
     }
 
-      public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,4 +56,13 @@ public class Travel {
     public void setDestination(String destination) {
         this.destination = destination;
     }
+
+    public TravelRequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TravelRequestStatus status) {
+        this.status = status;
+    }
+
 }

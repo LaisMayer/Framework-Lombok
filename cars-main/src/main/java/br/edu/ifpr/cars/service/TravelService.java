@@ -3,9 +3,12 @@ package br.edu.ifpr.cars.service;
 import br.edu.ifpr.cars.domain.travel.TravelRepository;
 import br.edu.ifpr.cars.domain.travel.Travel;
 import br.edu.ifpr.cars.domain.travel.dto.TravelRequestDTO;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import br.edu.ifpr.cars.domain.travel.TravelRequestStatus;
 
 @Service
 public class TravelService {
