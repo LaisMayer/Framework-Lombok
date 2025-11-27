@@ -8,7 +8,7 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = AnoCarroValidation.class)
+@Constraint(validatedBy = ComentarioValidation.class)
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Comentario {
