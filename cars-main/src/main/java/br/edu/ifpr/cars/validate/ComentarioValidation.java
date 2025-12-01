@@ -11,17 +11,20 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class ComentarioValidation implements ConstraintValidator<Comentario, String>{
 
-    private final ArrayList<String> PalavrasProibidas = (ArrayList<String>) Arrays.asList("burro","idiota", "lixo", "guardaroupa");
-
-    @Override
-    public boolean isValid(String comentario, ConstraintValidatorContext context) {
-
-        if (comentario == null || comentario.trim().isEmpty()) {
-            return true;
-        }
-        comentario = comentario.toLowerCase();
-
-        for (String coment : PalavrasProibidas) {
+    private static final String[] PalavrasProibidas = {"burro", "idiota", "lixo", "guardaroupa"};
+        // private final ArrayList<String> PalavrasProibidas = (ArrayList<String>) Arrays.asList("burro","idiota", "lixo", "guardaroupa");
+        // private final ArrayList<String> palavrasProibidas =
+        // new ArrayList<>(Arrays.asList("burro", "idiota", "lixo", "guardaroupa"));
+    
+        @Override
+        public boolean isValid(String comentario, ConstraintValidatorContext context) {
+    
+            if (comentario == null || comentario.trim().isEmpty()) {
+                return true;
+            }
+            comentario = comentario.toLowerCase();
+    
+            for (String coment : PalavrasProibidas) {
            
             if (comentario.contains(coment)) {
                
