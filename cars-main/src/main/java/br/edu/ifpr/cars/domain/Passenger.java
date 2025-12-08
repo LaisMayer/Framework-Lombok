@@ -23,18 +23,17 @@ public class Passenger {
     @NotBlank(message = "é necessário digitar um nome" )
     @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres") 
     @Pattern(regexp = "^[\\S]+$", message = "O nome não pode conter espaços em branco")
-    @Valid
     private String name;
-
     
-    @NotBlank(message = "é necessário digitar um cpf" )
+    @NotBlank(message = "é necessário digitar um CPF" )
     @CPF(message = "O CPF é inválido ou não foi preenchido corretamente.") 
-    private String email;
-
+    private String cpf;
+    
     @NotBlank(message = "é necessário digitar um email" )
     @Email(message = "O email deve estar no formato válido") 
     @Pattern(regexp = "^\\S+$", message = "O email não pode conter espaços em branco")
-    private String cpf;
+    private String email;
+    
 
     public Long getId() {
         return id;
